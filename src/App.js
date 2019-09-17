@@ -1,15 +1,32 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import {Switch, Route, BrowserRouter, Redirect} from "react-router-dom";
+import styled, {ThemeProvider} from 'styled-components';
+
+import TrackingTable from './components/tracking-table/tracking-table.component';
+import ProjectsPage from './components/projects-page/projects-page.component';
+import Login from './components/login/login.component';
+
 import './App.css';
-import styled from 'styled-components';
-import Header from './components/header/header.component';
-import DatesSlots from './components/dates-slots/dates-slots.component';
+
+const theme = {
+  primary: '#9013fe',
+  secondary: '#707070'
+}
 
 const App = () => {
   return (
-    <Container>
-      <Header />
-      <DatesSlots />
-    </Container>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Container>
+          <Switch>
+            <Route exact path="/" render={() => <Redirect to="/login/"/>}/>
+            <Route path="/login" component={Login}/>
+            <Route path="/projects-page" component={ProjectsPage}/>
+            <Route path="/tracking-table" component={TrackingTable}/>
+          </Switch>
+        </Container>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 

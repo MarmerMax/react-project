@@ -1,20 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import {createDate} from "../../utils/create-date";
+import {dateToString} from "../../utils/create-date";
 
-const Header = () => {
-  const firstDate = createDate(new Date());
-  const lastDate = createDate(new Date(), 7);
-
+const Header = ({firstDate, lastDate, prevDate, nextDate}) => {
 
   return (
     <Container>
-      <Title>Time tracking</Title>
-      <DatesContainer>
-        <DateTitle>{firstDate}</DateTitle>
-        <DateTitle>&nbsp;-&nbsp;</DateTitle>
-        <DateTitle>{lastDate}</DateTitle>
-      </DatesContainer>
+      <TitleContainer>
+        <Title>Time tracking</Title>
+        <DateTitle>{dateToString(firstDate)} - {dateToString(lastDate)}</DateTitle>
+      </TitleContainer>
+      <ButtonsContainer>
+        <PrevButton onClick={prevDate}>Previous</PrevButton>
+        <Button onClick={nextDate}>Next</Button>
+      </ButtonsContainer>
     </Container>
   )
 };
@@ -23,20 +22,49 @@ export default Header;
 
 
 const Container = styled.div`
-    // font-family: sans-serif;
-    padding: 10px;
-    text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
 `;
 
 const Title = styled.div`
-    font-size: 1.3rem;
+  font-size: 22px;
+  color: ${(props) => props.theme.primary};
+  font-weight: bold;
 `;
 
-const DatesContainer = styled.div`
-    display: inline-box;
-    color: grey;
+const TitleContainer = styled.div`
+  text-align: left;
 `;
 
 const DateTitle = styled.div`
-    font-size: 0.9rem;
+  font-size: 14px;
+  color: ${(props) => props.theme.secondary};
 `;
+
+const ButtonsContainer = styled.div``;
+
+const Button = styled.button`
+  width: 100px;
+  border-radius: 5px;
+  border: 1px solid #e1e1e1;
+  outline: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 5px;
+  //color: #707070;
+  //background-color: #ededed;
+  color: white;
+  background-color: ${(props) => props.theme.primary};
+  &:hover {
+    //background-color: #707070;
+    color: white;
+    opacity: 0.5;
+  }
+`;
+
+const PrevButton = styled(Button)`
+  margin-right: 10px;
+`;
+
