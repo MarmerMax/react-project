@@ -11,9 +11,18 @@ import './App.css';
 const theme = {
   primary: '#9013fe',
   secondary: '#707070'
-}
+};
 
 const App = () => {
+
+  const [auth, setAuth] = useState(false);
+
+  const authTry = (email, password) => {
+    if(email && password){
+      setAuth(true);
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>

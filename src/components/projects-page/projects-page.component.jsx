@@ -10,15 +10,35 @@ const ProjectsPage = () => {
         <ProjectsList>
           <Project>
             <ProjectTitle>1</ProjectTitle>
+            <ProjectProperties>
+              <ProjectEdit>Edit</ProjectEdit>
+              <Space>&nbsp; | &nbsp;</Space>
+              <ProjectDelete>Delete</ProjectDelete>
+            </ProjectProperties>
           </Project>
           <Project>
             <ProjectTitle>2</ProjectTitle>
+            <ProjectProperties>
+              <ProjectEdit>Edit</ProjectEdit>
+              <Space>&nbsp; | &nbsp;</Space>
+              <ProjectDelete>Delete</ProjectDelete>
+            </ProjectProperties>
           </Project>
           <Project>
             <ProjectTitle>3</ProjectTitle>
+            <ProjectProperties>
+              <ProjectEdit>Edit</ProjectEdit>
+              <Space>&nbsp; | &nbsp;</Space>
+              <ProjectDelete>Delete</ProjectDelete>
+            </ProjectProperties>
           </Project>
           <Project>
             <ProjectTitle>4</ProjectTitle>
+            <ProjectProperties>
+              <ProjectEdit>Edit</ProjectEdit>
+              <Space>&nbsp; | &nbsp;</Space>
+              <ProjectDelete>Delete</ProjectDelete>
+            </ProjectProperties>
           </Project>
         </ProjectsList>
       </ProjectsContainer>
@@ -49,6 +69,7 @@ const ProjectsContainer = styled.div`
 `;
 
 const AddProjectButton = styled.button`
+  cursor: pointer;
   align-self: flex-end;
   width: 120px;
   border: 1px solid ${(props) => props.theme.primary};
@@ -84,10 +105,31 @@ const Project = styled.div`
   font-size: 1.1rem;
   box-sizing: border-box;
   padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const ProjectTitle = styled.div`
   font-size: 14px;
   font-weight: bold;
   text-align: left;
+  cursor: pointer;
 `;
+
+const ProjectProperties = styled.div`
+  text-transform: uppercase;
+  font-size: 12px;
+  display: flex;
+`;
+
+const ProjectEdit = styled.div`
+  cursor: pointer;
+`;
+
+const ProjectDelete = styled.div`
+  color: red;
+  cursor: pointer;
+`;
+
+const Space = styled.div``;

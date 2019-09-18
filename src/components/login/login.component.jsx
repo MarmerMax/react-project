@@ -1,19 +1,61 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const Login = () => {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState({});
+
+  const handleEmail = (event) => {
+    const currentEmail = event.target.value;
+    setEmail((prevEmail) => currentEmail);
+  };
+
+  const handlePassword = (event) => {
+    const currentPassword = event.target.value;
+    setPassword((prevPass) => currentPassword);
+  };
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if(!email || !password){
+      if(!email){
+        setError({
+          ...error,
+          email: "Enter your email"
+        });
+      } else {
+        setError({
+          ...error,
+          password: "Enter your password"
+        });
+      }
+    } else {
+
+    }
+  };
+
   return (
     <Container>
       <Title>Login</Title>
-      <InputContainer>
-        <InputTitle>Email</InputTitle>
-        <InputField/>
-      </InputContainer>
-      <InputContainer>
-        <InputTitle>Password</InputTitle>
-        <InputField/>
-      </InputContainer>
-      <LoginButton>Login</LoginButton>
+      <FormContainer>
+        <InputContainer>
+          <InputTitle>Email</InputTitle>
+          <InputField
+            onChange={handleEmail}
+          />
+        </InputContainer>
+        <InputContainer>
+          <InputTitle>Password</InputTitle>
+          <InputField
+            onChange={handlePassword}
+          />
+        </InputContainer>
+        <LoginButton type="submit">Login</LoginButton>
+      </FormContainer>
     </Container>
   );
 };
@@ -37,6 +79,8 @@ const Title = styled.div`
   font-size: 22px;
   margin-bottom: 20px;
 `;
+
+const FormContainer = styled.form``;
 
 const InputContainer = styled.div``;
 
@@ -63,6 +107,7 @@ const LoginButton = styled.button`
   border: 1px solid #b15cfc;
   border-radius: 7px;
   text-transform: uppercase;
+  cursor: pointer;
   outline: none;
   height: 30px;
   margin-top: 15px;
