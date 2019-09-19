@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
-const Login = () => {
+const Login = (props) => {
+
+  if(props.isAuth){
+    props.history.push("/projects-page");
+  }
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,39 +21,47 @@ const Login = () => {
     setPassword((prevPass) => currentPassword);
   };
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
-
     if(!email || !password){
-      if(!email){
+      if (!email && !password) {
         setError({
           ...error,
-          email: "Enter your email"
+          email: "Email is incorrect",
+          password: "Password is incorrect"
+        });
+      } else if(!email){
+        setError({
+          ...error,
+          email: "Email is incorrect"
         });
       } else {
         setError({
           ...error,
-          password: "Enter your password"
+          password: "Password is incorrect"
         });
       }
     } else {
-
+      props.tryToLogin(email, password);
     }
   };
 
   return (
     <Container>
       <Title>Login</Title>
-      <FormContainer>
+      <FormContainer onSubmit={handleSubmit}>
         <InputContainer>
-          <InputTitle>Email</InputTitle>
+          <InputTitle>
+            Email {error.email ? <IncorrectInput>*{error.email}</IncorrectInput> : null}
+          </InputTitle>
           <InputField
             onChange={handleEmail}
           />
         </InputContainer>
         <InputContainer>
-          <InputTitle>Password</InputTitle>
+          <InputTitle>
+            Password {error.password ? <IncorrectInput>*{error.password}</IncorrectInput> : null}
+          </InputTitle>
           <InputField
             onChange={handlePassword}
           />
@@ -95,6 +107,12 @@ const InputField = styled.input`
   font-weight: 600;
   padding: 5px;
   box-sizing: border-box;
+`;
+
+const IncorrectInput = styled.span`
+  color: red;
+  font-size: 12px;
+  text-align: right;
 `;
 
 const InputTitle = styled.div`

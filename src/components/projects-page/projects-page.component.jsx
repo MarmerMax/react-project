@@ -1,45 +1,99 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
+// import {withRouter} from "react-router-dom";
+
+import ProjectsList from "../projects-list/projects-list.component";
+import Project from "../project/project.component";
+import AddNewProject from "../add-new-project/add-new-project.component";
+import Backdrop from "../backdrop/backdrop.component";
+import EditProject from "../edit-project/edit-project.component";
 
 const ProjectsPage = () => {
+
+  const [projects, setProjects] = useState([]);
+  const [showAddProject, setShowAddProject] = useState(false);
+  const [showEditProject, setShowEditProject] = useState(false);
+  const [editData, setEditData] = useState({
+    id: '',
+    label: ''
+  });
+
+  const handleAddProject = () => {
+    setShowAddProject(true);
+  };
+
+  const handleDropWindow = () => {
+    setShowAddProject(false);
+  };
+
+  const saveProject = (project) => {
+    const tempProjects = [...projects, project];
+    setProjects(tempProjects);
+    setShowAddProject(false);
+    setShowEditProject(false);
+    setEditData({
+      id: '',
+      label: ''
+    });
+  };
+
+  const deleteProject = (id) => {
+    const tempProjects = projects.filter(project => project.id !== id);
+    setProjects(tempProjects);
+  };
+
+  // const updateProject = (id, newLabel) => {
+  //   const changedProjects = projects.find(product => product.id === id)
+  //     .forEach(project => project.name = newLabel);
+  //   console.log(changedProjects);
+  // };
+
+  const handleEdit = (id, name) => {
+    setEditData({
+      ...editData,
+      id: id,
+      label: name
+    });
+    setShowEditProject(true);
+  };
+
   return (
     <Container>
       <Title>Projects</Title>
       <ProjectsContainer>
-        <AddProjectButton>Add Project</AddProjectButton>
+        <AddProjectButton onClick={handleAddProject}>
+          Add Project
+        </AddProjectButton>
         <ProjectsList>
-          <Project>
-            <ProjectTitle>1</ProjectTitle>
-            <ProjectProperties>
-              <ProjectEdit>Edit</ProjectEdit>
-              <Space>&nbsp; | &nbsp;</Space>
-              <ProjectDelete>Delete</ProjectDelete>
-            </ProjectProperties>
-          </Project>
-          <Project>
-            <ProjectTitle>2</ProjectTitle>
-            <ProjectProperties>
-              <ProjectEdit>Edit</ProjectEdit>
-              <Space>&nbsp; | &nbsp;</Space>
-              <ProjectDelete>Delete</ProjectDelete>
-            </ProjectProperties>
-          </Project>
-          <Project>
-            <ProjectTitle>3</ProjectTitle>
-            <ProjectProperties>
-              <ProjectEdit>Edit</ProjectEdit>
-              <Space>&nbsp; | &nbsp;</Space>
-              <ProjectDelete>Delete</ProjectDelete>
-            </ProjectProperties>
-          </Project>
-          <Project>
-            <ProjectTitle>4</ProjectTitle>
-            <ProjectProperties>
-              <ProjectEdit>Edit</ProjectEdit>
-              <Space>&nbsp; | &nbsp;</Space>
-              <ProjectDelete>Delete</ProjectDelete>
-            </ProjectProperties>
-          </Project>
+          {
+            showAddProject
+              ? <>
+                <Backdrop show={showAddProject} drop={handleDropWindow}/>
+                <AddNewProject createProject={saveProject} projects={projects}/>
+              </>
+              : null
+          }
+          {
+            showEditProject
+              ? <>
+                <Backdrop show={showEditProject} drop={handleDropWindow}/>
+                <EditProject
+                  newLabel={editData}
+                  saveProject={saveProject}
+                  projects={projects}
+                />
+              </>
+              : null
+          }
+          {projects.map(project => (
+            <Project
+              name={project.label}
+              key={project.id}
+              id={project.id}
+              remove={deleteProject}
+              edit={handleEdit}
+            />
+          ))}
         </ProjectsList>
       </ProjectsContainer>
     </Container>
@@ -85,51 +139,3 @@ const AddProjectButton = styled.button`
     opacity: 0.5;
   }
 `;
-
-const ProjectsList = styled.div`
-  height: 300px;
-  padding: 10px;
-  background: #F7F7F7;
-  border: 1px solid #e1e1e1;
-  border-radius: 5px;
-`;
-
-const Project = styled.div`
-  background-color: #fff;
-  margin: 10px;
-  height: 35px;
-  border: 1px solid #D0D0D0;
-  border-radius: 5px;
-  color: #454545;
-  font-weight: bold;
-  font-size: 1.1rem;
-  box-sizing: border-box;
-  padding: 5px 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const ProjectTitle = styled.div`
-  font-size: 14px;
-  font-weight: bold;
-  text-align: left;
-  cursor: pointer;
-`;
-
-const ProjectProperties = styled.div`
-  text-transform: uppercase;
-  font-size: 12px;
-  display: flex;
-`;
-
-const ProjectEdit = styled.div`
-  cursor: pointer;
-`;
-
-const ProjectDelete = styled.div`
-  color: red;
-  cursor: pointer;
-`;
-
-const Space = styled.div``;
