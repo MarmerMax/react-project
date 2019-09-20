@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
+import propTypes from 'prop-types';
 import DateSlot from '../date-slot/date-slot.component';
 import {createWeek} from "../../utils/create-date.util";
 
@@ -31,6 +32,11 @@ const DatesSlots = ({firstDate, label}) => {
         />)}
     </Container>
   );
+};
+
+DatesSlots.propTypes = {
+  firstDate: propTypes.object.isRequired,
+  label: propTypes.string.isRequired
 };
 
 export default DatesSlots;

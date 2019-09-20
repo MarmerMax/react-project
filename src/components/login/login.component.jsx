@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import propTypes from 'prop-types';
 import {Redirect} from "react-router-dom";
 // import {validate} from "../../utils/validate.util";
+import withLoader from "../../hoc/with-loader/with-loader.hoc";
 
-const Login = (props) => {
-
+const Login = ({isAuth, tryToLogin, ...props}) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,14 +30,14 @@ const Login = (props) => {
     // } else {
     //   props.tryToLogin(email, password);
     // }
-    if(!email || !password){
+    if (!email || !password) {
       if (!email && !password) {
         setErrors({
           ...errors,
           email: "Email is incorrect",
           password: "Password is incorrect"
         });
-      } else if(!email){
+      } else if (!email) {
         setErrors({
           ...errors,
           email: "Email is incorrect"
@@ -48,18 +49,24 @@ const Login = (props) => {
         });
       }
     } else {
-      props.tryToLogin(email, password);
+      tryToLogin(email, password);
     }
   };
 
-  if(props.isAuth){
-    return <Redirect to="/projects-page"/>;
+
+  //TODO: return to normal code without setInterval...
+  if (isAuth) {
+    // return <Redirect to="/projects-page"/>;
+    const redirect = () => {
+        props.history.push('/projects-page');
+    };
+    setInterval(redirect, 1000);
   }
 
   return (
     <Container>
       <Title>Login</Title>
-      <FormContainer onSubmit={handleSubmit}>
+      <LoginForm onSubmit={handleSubmit}>
         <InputContainer>
           <InputTitle>
             Email {errors.email ? <IncorrectInput>*{errors.email}</IncorrectInput> : null}
@@ -77,12 +84,18 @@ const Login = (props) => {
           />
         </InputContainer>
         <LoginButton type="submit">Login</LoginButton>
-      </FormContainer>
+      </LoginForm>
     </Container>
   );
 };
 
-export default Login;
+Login.propTypes = {
+  isAuth: propTypes.bool.isRequired,
+  tryToLogin: propTypes.func.isRequired
+};
+
+export default withLoader(Login);
+
 
 const Container = styled.div`
   margin: 20% auto;
@@ -102,7 +115,7 @@ const Title = styled.div`
   margin-bottom: 20px;
 `;
 
-const FormContainer = styled.form``;
+const LoginForm = styled.form``;
 
 const InputContainer = styled.div``;
 

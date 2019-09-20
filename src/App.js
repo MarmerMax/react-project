@@ -8,6 +8,7 @@ import Login from './components/login/login.component';
 import NotFoundPage from "./components/not-found-page/not-found-page.component";
 import {ProtectedRoute} from "./components/protected-route/protected-route.component";
 
+
 import './App.css';
 
 const theme = {
@@ -17,12 +18,13 @@ const theme = {
 
 const App = () => {
 
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const tryToLogin = (email, password) => {
     if (email && password) {
       setIsAuthenticated(true);
+      setLoading(true);
     }
   };
 
@@ -34,15 +36,25 @@ const App = () => {
             <Route exact path="/" render={() => <Redirect to="/login/"/>}/>
             {/*<Route path="/login" component={Login} tryToLogin={tryToLogin}/>*/}
             <Route
+              exact
               path="/login"
-              render={(props) => <Login {...props} isAuth={isAuthenticated} tryToLogin={tryToLogin}/>}
+              render={(props) => (
+                <Login
+                  loading={loading}
+                  isAuth={isAuthenticated}
+                  tryToLogin={tryToLogin}
+                  {...props}
+                />
+              )}
             />
             <ProtectedRoute
+              exact
               isAuth={isAuthenticated}
               path="/projects-page"
               Component={ProjectsPage}
             />
             <ProtectedRoute
+              exact
               isAuth={isAuthenticated}
               path="/project/:label"
               Component={TrackingTable}

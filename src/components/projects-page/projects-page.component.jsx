@@ -10,7 +10,7 @@ import Modal from '../../hoc/modal/modal.hoc';
 
 const ProjectsPage = (props) => {
   const [projects, setProjects] = useState([
-    {id: 23, label: '222'}
+    {id: '23', label: '222'}
   ]);
   const [showAddProject, setShowAddProject] = useState(false);
   const [showEditProject, setShowEditProject] = useState(false);
@@ -24,15 +24,18 @@ const ProjectsPage = (props) => {
   };
 
   const handleCloseBackdrop = () => {
+    console.log("backdrop")
     setShowAddProject(false);
     setShowEditProject(false);
   };
+
 
   const saveProject = (project) => {
     const tempProjects = [...projects, project];
     setProjects(tempProjects);
     setShowAddProject(false);
   };
+
 
   const deleteProject = (id) => {
     const tempProjects = projects.filter(project => project.id !== id);
@@ -69,34 +72,34 @@ const ProjectsPage = (props) => {
   return (
     <Container>
       <Title>Projects</Title>
+      {
+        showAddProject
+          ?
+          (<Modal show={showAddProject} modalClosed={handleCloseBackdrop}>
+            <AddNewProject
+              createProject={saveProject}
+              projects={projects}
+            />
+          </Modal>)
+          : null
+      }
+      {
+        showEditProject
+          ?
+          (<Modal show={showEditProject} modalClosed={handleCloseBackdrop}>
+            <EditProject
+              newLabel={editData}
+              saveProject={updateProject}
+              projects={projects}
+            />
+          </Modal>)
+          : null
+      }
       <ProjectsContainer>
         <AddProjectButton onClick={handleAddProject}>
           Add Project
         </AddProjectButton>
         <ProjectsList>
-          {
-            showAddProject
-              ?
-              (<Modal show={showAddProject} drop={handleCloseBackdrop}>
-                <AddNewProject
-                  createProject={saveProject}
-                  projects={projects}
-                />
-              </Modal>)
-              : null
-          }
-          {
-            showEditProject
-              ?
-              (<Modal show={showEditProject} modalClosed={handleCloseBackdrop}>
-                <EditProject
-                  newLabel={editData}
-                  saveProject={updateProject}
-                  projects={projects}
-                />
-              </Modal>)
-              : null
-          }
           {projects.map(project => (
             <Project
               open={openProject}

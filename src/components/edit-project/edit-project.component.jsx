@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import propTypes from 'prop-types';
 
 const EditProject = ({newLabel, saveProject, projects}) => {
   const [error, setError] = useState({});
@@ -39,12 +40,16 @@ const EditProject = ({newLabel, saveProject, projects}) => {
   );
 };
 
+EditProject.propTypes = {
+  newLabel: propTypes.objectOf(propTypes.string).isRequired,
+  saveProject: propTypes.func.isRequired,
+  projects: propTypes.arrayOf(propTypes.object).isRequired
+};
+
 export default EditProject;
 
 const Container = styled.div`
-  margin: 20px 100px;
-  position: fixed;
-  z-index: 500;
+  z-index: 100;
   padding: 10px;
   background: white;
   border: 1px solid #e1e1e1;

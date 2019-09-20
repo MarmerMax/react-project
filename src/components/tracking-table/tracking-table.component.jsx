@@ -4,18 +4,18 @@ import {withRouter} from "react-router";
 
 import Header from "../header/header.component";
 import DatesSlots from "../dates-slots/dates-slots.component";
-import {createDateUtil} from "../../utils/create-date.util";
+import {createDate} from "../../utils/create-date.util";
 import {WEEK_DURATION} from "../../constants/dates.constants";
 
 const TrackingTable = (props) => {
   const [daysOffset, setDaysOffset] = useState(0);
 
-  const [firstDate, setFirstDate] = useState(createDateUtil(daysOffset));
-  const [lastDate, setLastDate] = useState(createDateUtil(WEEK_DURATION - 1, firstDate));
+  const [firstDate, setFirstDate] = useState(createDate(daysOffset));
+  const [lastDate, setLastDate] = useState(createDate(WEEK_DURATION - 1, firstDate));
 
   useEffect(() => {
-    const tempFirstDate = createDateUtil(daysOffset);
-    const tempLastDate = createDateUtil(WEEK_DURATION - 1, tempFirstDate);
+    const tempFirstDate = createDate(daysOffset);
+    const tempLastDate = createDate(WEEK_DURATION - 1, tempFirstDate);
     setFirstDate(tempFirstDate);
     setLastDate(tempLastDate);
   }, [daysOffset]);
