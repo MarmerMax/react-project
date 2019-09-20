@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Project = ({name, id, remove, edit}) => {
+const Project = ({open, name, id, remove, edit}) => {
 
   const handleDelete = () => {
     remove(id);
@@ -11,9 +11,13 @@ const Project = ({name, id, remove, edit}) => {
     edit(id, name);
   };
 
+  const handleClick = () => {
+    open(name);
+  };
+
   return (
     <Container>
-      <ProjectTitle>{name}</ProjectTitle>
+      <ProjectTitle onClick={handleClick}>{name}</ProjectTitle>
       <ProjectProperties>
         <ProjectEdit onClick={handleEdit}>Edit</ProjectEdit>
         <Space>&nbsp; | &nbsp;</Space>

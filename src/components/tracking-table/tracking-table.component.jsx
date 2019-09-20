@@ -1,19 +1,21 @@
 import React, {useState, useEffect} from 'react';
+import styled from "styled-components";
+import {withRouter} from "react-router";
+
 import Header from "../header/header.component";
 import DatesSlots from "../dates-slots/dates-slots.component";
-import styled from "styled-components";
-import {createDate} from "../../utils/create-date";
+import {createDateUtil} from "../../utils/create-date.util";
 import {WEEK_DURATION} from "../../constants/dates.constants";
 
 const TrackingTable = (props) => {
   const [daysOffset, setDaysOffset] = useState(0);
 
-  const [firstDate, setFirstDate] = useState(createDate(daysOffset));
-  const [lastDate, setLastDate] = useState(createDate(WEEK_DURATION - 1, firstDate));
+  const [firstDate, setFirstDate] = useState(createDateUtil(daysOffset));
+  const [lastDate, setLastDate] = useState(createDateUtil(WEEK_DURATION - 1, firstDate));
 
   useEffect(() => {
-    const tempFirstDate = createDate(daysOffset);
-    const tempLastDate = createDate(WEEK_DURATION - 1, tempFirstDate);
+    const tempFirstDate = createDateUtil(daysOffset);
+    const tempLastDate = createDateUtil(WEEK_DURATION - 1, tempFirstDate);
     setFirstDate(tempFirstDate);
     setLastDate(tempLastDate);
   }, [daysOffset]);
@@ -30,13 +32,14 @@ const TrackingTable = (props) => {
         nextDate={handleNext}
       />
       <DatesSlots
+        label={props.match.params.label}
         firstDate={firstDate}
       />
     </Container>
   );
 };
 
-export default TrackingTable;
+export default withRouter(TrackingTable);
 
 const Container = styled.div``;
 

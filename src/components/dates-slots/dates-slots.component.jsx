@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import DateSlot from '../date-slot/date-slot.component';
-import {createWeek} from "../../utils/create-date";
+import {createWeek} from "../../utils/create-date.util";
 
-const DatesSlots = ({firstDate}) => {
-  const [dates, setDates] = useState(createWeek(firstDate));
+const DatesSlots = ({firstDate, label}) => {
+  const [dateLabels, setDateLabels] = useState(createWeek(firstDate));
   const [hours, setHours] = useState({});
 
   useEffect(() => {
-    setDates(createWeek(firstDate));
+    setDateLabels(createWeek(firstDate));
   }, [firstDate]);
 
   const changeHours = (day, hour) => {
@@ -20,9 +20,9 @@ const DatesSlots = ({firstDate}) => {
   return (
     <Container>
       <ProjectLabel>
-        My project label
+        {label}
       </ProjectLabel>
-      {dates.map(date =>
+      {dateLabels.map(date =>
         <DateSlot
           date={date.label}
           hour={hours[date.label]}
@@ -49,17 +49,6 @@ const ProjectLabel = styled.div`
   color: #454545;
   font-size: 0.9rem;
   font-weight: bold;
-  padding: 32px 0;
+  padding: 10px 0;
   text-align: left;
 `;
-
-
-// useEffect(() => {
-//   const weekHours = {...hours};
-//   const weekDates = [...dates];
-//   const newDates = weekDates.filter(date => !(date.date in weekHours));
-//   // console.log("newDates", newDates);
-//   newDates.forEach(date => weekHours[date.date] = '');
-//   // console.log("weekHours", weekHours);
-//   setHours(weekHours);
-// }, []);

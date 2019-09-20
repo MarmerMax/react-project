@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
-const EditProject = ({newLabel, saveProject, products}) => {
-
+const EditProject = ({newLabel, saveProject, projects}) => {
   const [error, setError] = useState({});
   const [updatedProject, setUpdatedProjects] = useState({
     id: newLabel.id,
@@ -11,8 +10,10 @@ const EditProject = ({newLabel, saveProject, products}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(!updatedProject){
+    if(!updatedProject.label){
       setError({label: "Enter the label of project"});
+    } else if(projects.some(project => project.label === updatedProject.label && project.id !== updatedProject.id)) {
+      setError({label: "The name is already exists"})
     } else {
       saveProject(updatedProject);
     }
@@ -20,17 +21,20 @@ const EditProject = ({newLabel, saveProject, products}) => {
 
   const handleInput = (event) => {
     const tempLabel = event.target.value;
-    setUpdatedProjects(tempLabel);
+    setUpdatedProjects({
+      ...updatedProject,
+      label: tempLabel
+    });
   };
 
   return (
     <Container>
-      <ProjectForm onSubmit={handleSubmit}>
+      {<ProjectForm onSubmit={handleSubmit}>
         <ProjectLabel>Project label</ProjectLabel>
         {error.label ? <IncorrectInput>*{error.label}</IncorrectInput> : null}
         <ProjectInput autoFocus onChange={handleInput} value={updatedProject.label}/>
         <SaveButton type="submit">Save</SaveButton>
-      </ProjectForm>
+      </ProjectForm>}
     </Container>
   );
 };
@@ -52,7 +56,9 @@ const Container = styled.div`
   transition: all 0.3s ease-out;
 `;
 
-const ProjectForm = styled.form``;
+const ProjectForm = styled.form`
+  text-align: left;
+`;
 
 const ProjectLabel = styled.div`
   text-align: left;

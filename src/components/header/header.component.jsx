@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {dateToString} from "../../utils/create-date";
+import {dateToString} from "../../utils/create-date.util";
 
 const Header = ({firstDate, lastDate, prevDate, nextDate}) => {
 

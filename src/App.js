@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Switch, Route, BrowserRouter as Router, Redirect} from "react-router-dom";
 import styled, {ThemeProvider} from 'styled-components';
 
@@ -18,7 +18,7 @@ const theme = {
 const App = () => {
 
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   const tryToLogin = (email, password) => {
     if (email && password) {
@@ -44,7 +44,7 @@ const App = () => {
             />
             <ProtectedRoute
               isAuth={isAuthenticated}
-              path="/tracking-table"
+              path="/project/:label"
               Component={TrackingTable}
             />
             <Route path="*" component={NotFoundPage}/>

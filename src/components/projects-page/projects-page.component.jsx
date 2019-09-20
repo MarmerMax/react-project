@@ -1,16 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
-// import {withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 import ProjectsList from "../projects-list/projects-list.component";
 import Project from "../project/project.component";
 import AddNewProject from "../add-new-project/add-new-project.component";
-import Backdrop from "../backdrop/backdrop.component";
 import EditProject from "../edit-project/edit-project.component";
+import Modal from '../../hoc/modal/modal.hoc';
 
-const ProjectsPage = () => {
-
-  const [projects, setProjects] = useState([]);
+const ProjectsPage = (props) => {
+  const [projects, setProjects] = useState([
+    {id: 23, label: '222'}
+  ]);
   const [showAddProject, setShowAddProject] = useState(false);
   const [showEditProject, setShowEditProject] = useState(false);
   const [editData, setEditData] = useState({
@@ -22,19 +23,15 @@ const ProjectsPage = () => {
     setShowAddProject(true);
   };
 
-  const handleDropWindow = () => {
+  const handleCloseBackdrop = () => {
     setShowAddProject(false);
+    setShowEditProject(false);
   };
 
   const saveProject = (project) => {
     const tempProjects = [...projects, project];
     setProjects(tempProjects);
     setShowAddProject(false);
-    setShowEditProject(false);
-    setEditData({
-      id: '',
-      label: ''
-    });
   };
 
   const deleteProject = (id) => {
@@ -42,11 +39,19 @@ const ProjectsPage = () => {
     setProjects(tempProjects);
   };
 
-  // const updateProject = (id, newLabel) => {
-  //   const changedProjects = projects.find(product => product.id === id)
-  //     .forEach(project => project.name = newLabel);
-  //   console.log(changedProjects);
-  // };
+  const updateProject = (updatedProject) => {
+    const indexOfChangedProject = projects.findIndex(project => project.id === updatedProject.id);
+
+    let changedProjects = [...projects];
+    changedProjects[indexOfChangedProject].label = updatedProject.label;
+
+    setProjects(changedProjects);
+    setShowEditProject(false);
+    setEditData({
+      id: '',
+      label: ''
+    });
+  };
 
   const handleEdit = (id, name) => {
     setEditData({
@@ -55,6 +60,10 @@ const ProjectsPage = () => {
       label: name
     });
     setShowEditProject(true);
+  };
+
+  const openProject = (label) => {
+    props.history.push(`/project/${label}`);
   };
 
   return (
@@ -67,26 +76,30 @@ const ProjectsPage = () => {
         <ProjectsList>
           {
             showAddProject
-              ? <>
-                <Backdrop show={showAddProject} drop={handleDropWindow}/>
-                <AddNewProject createProject={saveProject} projects={projects}/>
-              </>
+              ?
+              (<Modal show={showAddProject} drop={handleCloseBackdrop}>
+                <AddNewProject
+                  createProject={saveProject}
+                  projects={projects}
+                />
+              </Modal>)
               : null
           }
           {
             showEditProject
-              ? <>
-                <Backdrop show={showEditProject} drop={handleDropWindow}/>
+              ?
+              (<Modal show={showEditProject} modalClosed={handleCloseBackdrop}>
                 <EditProject
                   newLabel={editData}
-                  saveProject={saveProject}
+                  saveProject={updateProject}
                   projects={projects}
                 />
-              </>
+              </Modal>)
               : null
           }
           {projects.map(project => (
             <Project
+              open={openProject}
               name={project.label}
               key={project.id}
               id={project.id}
@@ -100,7 +113,7 @@ const ProjectsPage = () => {
   );
 };
 
-export default ProjectsPage;
+export default withRouter(ProjectsPage);
 
 const Container = styled.div``;
 

@@ -1,12 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const DateSlot = ({date, hour, changeHours}) => {
-  const [hours, setHours] = useState(hour);
-
   const handleInput = (event) => {
     const value = event.target.value;
-    setHours(value);
     changeHours(date, value);
   };
 
@@ -14,8 +11,8 @@ const DateSlot = ({date, hour, changeHours}) => {
     <Container>
       <DateValue>{date}</DateValue>
       <InputField
-        type="number"
-        value={hours}
+        type="text"
+        value={hour || ''}
         onChange={handleInput}
       />
     </Container>

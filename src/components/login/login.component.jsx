@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import {Redirect} from "react-router-dom";
+// import {validate} from "../../utils/validate.util";
 
 const Login = (props) => {
 
-  if(props.isAuth){
-    props.history.push("/projects-page");
-  }
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState({});
+  const [errors, setErrors] = useState({});
 
   const handleEmail = (event) => {
     const currentEmail = event.target.value;
@@ -23,21 +22,28 @@ const Login = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // const validationErrors = validate(email, password);
+    // if(validationErrors.length > 0){
+    //   setErrors(validationErrors);
+    // } else {
+    //   props.tryToLogin(email, password);
+    // }
     if(!email || !password){
       if (!email && !password) {
-        setError({
-          ...error,
+        setErrors({
+          ...errors,
           email: "Email is incorrect",
           password: "Password is incorrect"
         });
       } else if(!email){
-        setError({
-          ...error,
+        setErrors({
+          ...errors,
           email: "Email is incorrect"
         });
       } else {
-        setError({
-          ...error,
+        setErrors({
+          ...errors,
           password: "Password is incorrect"
         });
       }
@@ -46,13 +52,17 @@ const Login = (props) => {
     }
   };
 
+  if(props.isAuth){
+    return <Redirect to="/projects-page"/>;
+  }
+
   return (
     <Container>
       <Title>Login</Title>
       <FormContainer onSubmit={handleSubmit}>
         <InputContainer>
           <InputTitle>
-            Email {error.email ? <IncorrectInput>*{error.email}</IncorrectInput> : null}
+            Email {errors.email ? <IncorrectInput>*{errors.email}</IncorrectInput> : null}
           </InputTitle>
           <InputField
             onChange={handleEmail}
@@ -60,7 +70,7 @@ const Login = (props) => {
         </InputContainer>
         <InputContainer>
           <InputTitle>
-            Password {error.password ? <IncorrectInput>*{error.password}</IncorrectInput> : null}
+            Password {errors.password ? <IncorrectInput>*{errors.password}</IncorrectInput> : null}
           </InputTitle>
           <InputField
             onChange={handlePassword}

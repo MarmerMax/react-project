@@ -61,7 +61,9 @@ const Container = styled.div`
   transition: all 0.3s ease-out;
 `;
 
-const ProjectForm = styled.form``;
+const ProjectForm = styled.form`
+  text-align: left;
+`;
 
 const Title = styled.div`
   font-size: 18px;
