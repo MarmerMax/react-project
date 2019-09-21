@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bdd60e92-cecf-4f21-b518-89031b0e7282" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/hoc/auxiliary/auxiliary.hoc.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hoc/modal/modal.hoc.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/validate.util.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/add-new-project/add-new-project.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/add-new-project/add-new-project.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/backdrop/backdrop.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/backdrop/backdrop.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/date-slot/date-slot.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/date-slot/date-slot.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dates-slots/dates-slots.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dates-slots/dates-slots.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/edit-project/edit-project.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/edit-project/edit-project.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/header.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/header.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/login/login.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login/login.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/project/project.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/project/project.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/projects-page/projects-page.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/projects-page/projects-page.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tracking-table/tracking-table.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tracking-table/tracking-table.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/create-date.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/create-date.util.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,7 +15,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="319">
@@ -42,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/dates-slots/dates-slots.component.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="176">
+              <caret line="11" column="18" lean-forward="true" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -270,16 +255,15 @@
       <updated>1568616198162</updated>
       <workItem from="1568616200439" duration="13329000" />
       <workItem from="1568661534776" duration="43954000" />
-      <workItem from="1568891032308" duration="18192000" />
+      <workItem from="1568891032308" duration="19475000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75475000" />
+    <option name="totallyTimeSpent" value="76758000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.18609865" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -295,7 +279,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3289689" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -438,16 +422,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="20" column="61" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/projects-page/projects-page.component.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -481,8 +455,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/dates-slots/dates-slots.component.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="176">
+          <caret line="11" column="18" lean-forward="true" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="20" column="61" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
