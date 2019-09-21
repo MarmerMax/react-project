@@ -2,26 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bdd60e92-cecf-4f21-b518-89031b0e7282" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/spinner/spinner.component.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hoc/with-loader/with-loader.hoc.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/add-new-project/add-new-project.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/add-new-project/add-new-project.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/backdrop/backdrop.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/backdrop/backdrop.component.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/date-slot/date-slot.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/date-slot/date-slot.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dates-slots/dates-slots.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dates-slots/dates-slots.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/days/days.component.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/edit-project/edit-project.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/edit-project/edit-project.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/header.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/header.component.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/login/login.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login/login.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/project/project.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/project/project.component.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/projects-page/projects-page.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/projects-page/projects-page.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/protected-route/protected-route.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/protected-route/protected-route.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tracking-table/tracking-table.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tracking-table/tracking-table.component.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hoc/modal/modal.hoc.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hoc/modal/modal.hoc.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/create-date.util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/create-date.util.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,8 +27,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../React Projects/Hooks-news/hooks-news" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -73,6 +62,7 @@
       <workItem from="1568616200439" duration="13329000" />
       <workItem from="1568661534776" duration="43954000" />
       <workItem from="1568891032308" duration="18192000" />
+      <workItem from="1569042018252" duration="4679000" />
     </task>
     <servers />
   </component>
@@ -84,7 +74,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

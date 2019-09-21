@@ -56,11 +56,11 @@ const Login = ({isAuth, tryToLogin, ...props}) => {
 
   //TODO: return to normal code without setInterval...
   if (isAuth) {
-    // return <Redirect to="/projects-page"/>;
-    const redirect = () => {
-        props.history.push('/projects-page');
-    };
-    setInterval(redirect, 1000);
+    return <Redirect to="/projects-page"/>;
+    // const redirect = (path) => {
+    //   props.history.push(path);
+    // };
+    // setInterval(redirect, 1000);
   }
 
   return (
@@ -95,7 +95,6 @@ Login.propTypes = {
 };
 
 export default withLoader(Login);
-
 
 const Container = styled.div`
   margin: 20% auto;

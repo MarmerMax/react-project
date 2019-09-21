@@ -6,15 +6,13 @@ import Aux from '../auxiliary/auxiliary.hoc';
 import Backdrop from '../../components/backdrop/backdrop.component';
 
 const Modal = ({show, modalClosed, ...props}) => {
-
-  console.log(modalClosed)
   return (
     <Aux>
       <Backdrop show={show} close={modalClosed} />
       <Container
         style={{
-          transform: show ? 'translateY(0)' : 'translateY(-100vh)',
-          opacity: show ? '1' : '0'
+          // transform: show ? 'translateY(0)' : 'translateY(-100vh)',
+          // opacity: show ? '1' : '0'
         }}>
         {props.children}
       </Container>
@@ -33,13 +31,9 @@ export default React.memo(Modal, (prevProps, nextProps) =>
 );
 
 const Container = styled.div`
-  z-index: 99;
+  z-index: 200;
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  left: 0;
 `;

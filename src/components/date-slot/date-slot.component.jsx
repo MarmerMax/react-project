@@ -26,7 +26,13 @@ DateSlot.propTypes = {
   changeHours: propTypes.func.isRequired
 };
 
-export default DateSlot;
+// export default React.memo(DateSlot, (prevProps, nextProps) =>
+//   prevProps.date === nextProps.date &&
+//   prevProps.hour === nextProps.hour &&
+//   prevProps.changeHours === nextProps.changeHours
+// );
+
+export  default DateSlot;
 
 const Container = styled.div`
   height: 400px;

@@ -24,7 +24,6 @@ const ProjectsPage = (props) => {
   };
 
   const handleCloseBackdrop = () => {
-    console.log("backdrop")
     setShowAddProject(false);
     setShowEditProject(false);
   };
@@ -118,7 +117,12 @@ const ProjectsPage = (props) => {
 
 export default withRouter(ProjectsPage);
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
 
 const Title = styled.div`
   font-size: 22px;
@@ -126,6 +130,7 @@ const Title = styled.div`
   font-weight: bold;
   text-align: left;
   padding: 20px 0;
+  align-self: flex-start;
 `;
 
 const ProjectsContainer = styled.div`
