@@ -1,6 +1,6 @@
 import {MONTH_NAMES, WEEK_DURATION} from "../constants/dates.constants";
 
-export const createDateUtil = (days = 0, date = new Date()) => {
+export const createDate = (days = 0, date = new Date()) => {
   const realDate = addDays(date, days);
   return realDate;
 };

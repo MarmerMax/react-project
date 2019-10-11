@@ -10,7 +10,7 @@ import Modal from '../../hoc/modal/modal.hoc';
 
 const ProjectsPage = (props) => {
   const [projects, setProjects] = useState([
-    {id: 23, label: '222'}
+    {label: '222', id: '23'}
   ]);
   const [showAddProject, setShowAddProject] = useState(false);
   const [showEditProject, setShowEditProject] = useState(false);
@@ -18,6 +18,8 @@ const ProjectsPage = (props) => {
     id: '',
     label: ''
   });
+
+  console.log(projects)
 
   const handleAddProject = () => {
     setShowAddProject(true);
@@ -28,11 +30,13 @@ const ProjectsPage = (props) => {
     setShowEditProject(false);
   };
 
+
   const saveProject = (project) => {
     const tempProjects = [...projects, project];
     setProjects(tempProjects);
     setShowAddProject(false);
   };
+
 
   const deleteProject = (id) => {
     const tempProjects = projects.filter(project => project.id !== id);
@@ -69,34 +73,34 @@ const ProjectsPage = (props) => {
   return (
     <Container>
       <Title>Projects</Title>
+      {
+        showAddProject
+          ?
+          (<Modal show={showAddProject} modalClosed={handleCloseBackdrop}>
+            <AddNewProject
+              createProject={saveProject}
+              projects={projects}
+            />
+          </Modal>)
+          : null
+      }
+      {
+        showEditProject
+          ?
+          (<Modal show={showEditProject} modalClosed={handleCloseBackdrop}>
+            <EditProject
+              newLabel={editData}
+              saveProject={updateProject}
+              projects={projects}
+            />
+          </Modal>)
+          : null
+      }
       <ProjectsContainer>
         <AddProjectButton onClick={handleAddProject}>
           Add Project
         </AddProjectButton>
         <ProjectsList>
-          {
-            showAddProject
-              ?
-              (<Modal show={showAddProject} drop={handleCloseBackdrop}>
-                <AddNewProject
-                  createProject={saveProject}
-                  projects={projects}
-                />
-              </Modal>)
-              : null
-          }
-          {
-            showEditProject
-              ?
-              (<Modal show={showEditProject} modalClosed={handleCloseBackdrop}>
-                <EditProject
-                  newLabel={editData}
-                  saveProject={updateProject}
-                  projects={projects}
-                />
-              </Modal>)
-              : null
-          }
           {projects.map(project => (
             <Project
               open={openProject}
@@ -115,7 +119,12 @@ const ProjectsPage = (props) => {
 
 export default withRouter(ProjectsPage);
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
 
 const Title = styled.div`
   font-size: 22px;
@@ -123,6 +132,7 @@ const Title = styled.div`
   font-weight: bold;
   text-align: left;
   padding: 20px 0;
+  align-self: flex-start;
 `;
 
 const ProjectsContainer = styled.div`

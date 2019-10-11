@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import {Route, Redirect} from 'react-router-dom';
 
 export const ProtectedRoute = ({Component, isAuth, ...rest}) => {
@@ -14,4 +15,9 @@ export const ProtectedRoute = ({Component, isAuth, ...rest}) => {
       }}
     />
   );
+};
+
+ProtectedRoute.propTypes = {
+  Component: propTypes.func.isRequired,
+  isAuth: propTypes.bool.isRequired
 };

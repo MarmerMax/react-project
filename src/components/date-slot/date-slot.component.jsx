@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import propTypes from 'prop-types';
 
 const DateSlot = ({date, hour, changeHours}) => {
   const handleInput = (event) => {
@@ -11,7 +12,7 @@ const DateSlot = ({date, hour, changeHours}) => {
     <Container>
       <DateValue>{date}</DateValue>
       <InputField
-        type="text"
+        type="number"
         value={hour || ''}
         onChange={handleInput}
       />
@@ -19,7 +20,19 @@ const DateSlot = ({date, hour, changeHours}) => {
   );
 };
 
-export default DateSlot;
+DateSlot.propTypes = {
+  date: propTypes.string.isRequired,
+  hour: propTypes.string,
+  changeHours: propTypes.func.isRequired
+};
+
+// export default React.memo(DateSlot, (prevProps, nextProps) =>
+//   prevProps.date === nextProps.date &&
+//   prevProps.hour === nextProps.hour &&
+//   prevProps.changeHours === nextProps.changeHours
+// );
+
+export  default DateSlot;
 
 const Container = styled.div`
   height: 400px;

@@ -10,7 +10,7 @@ const ProjectsList = (props) => (
 export default ProjectsList;
 
 const Container = styled.div`
-  height: 300px;
+  min-height: 250px;
   padding: 10px;
   background: #F7F7F7;
   border: 1px solid #e1e1e1;

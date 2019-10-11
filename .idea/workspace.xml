@@ -2,17 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bdd60e92-cecf-4f21-b518-89031b0e7282" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/date-slot/date-slot.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/date-slot/date-slot.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/login/login.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login/login.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/projects-page/projects-page.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/projects-page/projects-page.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hoc/modal/modal.hoc.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hoc/modal/modal.hoc.jsx" afterDir="false" />
+>>>>>>> 21b7ac33ac9efb3c5b70b792ba2c4cc04bb5e919
     </list>
-    <ignored path="$PROJECT_DIR$/.tmp/" />
-    <ignored path="$PROJECT_DIR$/temp/" />
-    <ignored path="$PROJECT_DIR$/tmp/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
@@ -124,108 +131,25 @@
       <find>push</find>
     </findStrings>
   </component>
+=======
+>>>>>>> 21b7ac33ac9efb3c5b70b792ba2c4cc04bb5e919
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/App.css" />
-        <option value="$PROJECT_DIR$/src/components/date-slots/dates-slots.component.jsx" />
-        <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/src/index.css" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/constants/dates.constants.js" />
-        <option value="$PROJECT_DIR$/src/utils/create-date.js" />
-        <option value="$PROJECT_DIR$/src/components/header/header.component.jsx" />
-        <option value="$PROJECT_DIR$/src/components/add-new-project/add-new-project.component.jsx" />
-        <option value="$PROJECT_DIR$/src/components/edit-project/edit-project.component.jsx" />
-        <option value="$PROJECT_DIR$/src/utils/validate.util.js" />
-        <option value="$PROJECT_DIR$/src/components/project/project.component.jsx" />
-        <option value="$PROJECT_DIR$/src/hoc/auxiliary/auxiliary.hoc.jsx" />
-        <option value="$PROJECT_DIR$/src/components/backdrop/backdrop.component.jsx" />
-        <option value="$PROJECT_DIR$/src/hoc/modal/modal.hoc.jsx" />
-        <option value="$PROJECT_DIR$/src/components/tracking-table/tracking-table.component.jsx" />
-        <option value="$PROJECT_DIR$/src/components/login/login.component.jsx" />
-        <option value="$PROJECT_DIR$/src/components/projects-page/projects-page.component.jsx" />
-        <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/src/components/date-slot/date-slot.component.jsx" />
-        <option value="$PROJECT_DIR$/src/components/dates-slots/dates-slots.component.jsx" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="10" />
-    <option name="y" value="20" />
-    <option name="width" value="1340" />
-    <option name="height" value="688" />
-  </component>
+  <component name="ProjectId" id="1R6P3PcN5vWCnfdimL7CK4NGF3O" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="react-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-project" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="backdrop" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="hoc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="hoc" type="462c0819:PsiDirectoryNode" />
-              <item name="modal" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../React Projects/Hooks-news/hooks-news" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -255,6 +179,7 @@
       <updated>1568616198162</updated>
       <workItem from="1568616200439" duration="13329000" />
       <workItem from="1568661534776" duration="43954000" />
+<<<<<<< HEAD
       <workItem from="1568891032308" duration="19475000" />
     </task>
     <servers />
@@ -470,5 +395,27 @@
         </state>
       </provider>
     </entry>
+=======
+      <workItem from="1568891032308" duration="18192000" />
+      <workItem from="1569042018252" duration="4679000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+>>>>>>> 21b7ac33ac9efb3c5b70b792ba2c4cc04bb5e919
   </component>
 </project>

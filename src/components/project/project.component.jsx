@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import propTypes from 'prop-types';
 
 const Project = ({open, name, id, remove, edit}) => {
-
   const handleDelete = () => {
     remove(id);
   };
@@ -25,6 +25,14 @@ const Project = ({open, name, id, remove, edit}) => {
       </ProjectProperties>
     </Container>
   );
+};
+
+Project.propTypes = {
+  open: propTypes.func.isRequired,
+  name: propTypes.string.isRequired,
+  id: propTypes.string.isRequired,
+  remove: propTypes.func.isRequired,
+  edit: propTypes.func.isRequired
 };
 
 export default Project;

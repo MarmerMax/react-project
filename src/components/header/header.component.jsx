@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import propTypes from 'prop-types';
+
 import {dateToString} from "../../utils/create-date.util";
 
 const Header = ({firstDate, lastDate, prevDate, nextDate}) => {
@@ -16,6 +18,13 @@ const Header = ({firstDate, lastDate, prevDate, nextDate}) => {
       </ButtonsContainer>
     </Container>
   )
+};
+
+Header.propTypes = {
+  firstDate: propTypes.object.isRequired,
+  lastDate: propTypes.object.isRequired,
+  prevDate: propTypes.func.isRequired,
+  nextDate: propTypes.func.isRequired
 };
 
 export default Header;

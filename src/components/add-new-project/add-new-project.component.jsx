@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import propTypes from 'prop-types';
+import withLoader from "../../hoc/with-loader/with-loader.hoc";
 import v4 from "uuid/v4";
 
-const AddNewProject = (props) => {
+const AddNewProject = ({projects, createProject}) => {
 
   const [project, setProject] = useState({
     label: '',
@@ -22,14 +24,16 @@ const AddNewProject = (props) => {
     event.preventDefault();
     if (!project.label) {
       setError({label: "Enter the label of project"});
-    } else if (props.projects.some(item => item.label === project.label)) {
+    } else if (projects.some(item => item.label === project.label)) {
       setError({label: "The label is already exists"})
     } else {
-      props.createProject(project);
-      setProject({});
-      setError({});
+      createProject(project);
+      // setProject({});
+      // setError({});
     }
   };
+
+  console.log('[project]', project)
 
   return (
     <Container>
@@ -44,12 +48,15 @@ const AddNewProject = (props) => {
   );
 };
 
-export default AddNewProject;
+AddNewProject.propTypes = {
+  projects: propTypes.arrayOf(propTypes.object).isRequired,
+  createProject: propTypes.func.isRequired
+};
+
+export default withLoader(AddNewProject);
 
 const Container = styled.div`
-  margin: 20px 100px;
-  position: fixed;
-  z-index: 500;
+  z-index: 100;
   padding: 10px;
   background: white;
   border: 1px solid #e1e1e1;
