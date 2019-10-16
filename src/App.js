@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Switch, Route, BrowserRouter as Router, Redirect} from "react-router-dom";
 import styled, {ThemeProvider} from 'styled-components';
+import {connect} from 'react-redux';
 
 import TrackingTable from './components/tracking-table/tracking-table.component';
 import ProjectsPage from './components/projects-page/projects-page.component';
@@ -16,7 +17,7 @@ const theme = {
   secondary: '#707070'
 };
 
-const App = () => {
+const App = (props) => {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -67,6 +68,13 @@ const App = () => {
   );
 };
 
+// const mapStateToProps = (state) => {
+//   return {
+//     projects: state.projects
+//   };
+// };
+//
+// export default connect(mapStateToProps)(App);
 export default App;
 
 const Container = styled.div`

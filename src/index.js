@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { createStore, compose } from 'redux';
+import { createStore, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import projectsReducer from './store/reducers/projects.reducer.js';
 import {BrowserRouter} from "react-router-dom";
@@ -12,7 +12,7 @@ const composeEnhancers = process.env.NODE_ENV === 'development'
   ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   : null || compose;
 
-const store = createStore( projectsReducer, composeEnhancers() );
+const store = createStore( combineReducers({projects: projectsReducer}), composeEnhancers() );
 
 ReactDOM.render(
   <Provider store={store}>

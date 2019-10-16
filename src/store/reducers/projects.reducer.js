@@ -36,14 +36,17 @@ const projectsReducer = (state = InitialState, action) => {
   switch (action.type) {
     case actions.OPEN_PROJECT:
       // openProject();
+      return state;
     case actions.ADD_PROJECT:
-      addProject(state);
+      return addProject(state);
     case actions.EDIT_PROJECT:
-      editProject(state, action.payload.id);
+      return editProject(state, action.payload.id);
     case actions.DELETE_PROJECT:
-      deleteProject(state, action.payload.id);
+      return deleteProject(state, action.payload.id);
     case actions.SAVE_PROJECT:
-      saveProject(state, action.payload.project);
+      return saveProject(state, action.payload.project);
+    default:
+      return state;
   }
 
 };
