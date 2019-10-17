@@ -6,3 +6,5 @@ export const DELETE_PROJECT = 'DELETE_PROJECT';
 
 export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+
+export const SET_ITEM = 'SET_ITEM';

@@ -12,6 +12,8 @@ import {ProtectedRoute} from "./components/protected-route/protected-route.compo
 import * as actions from './store/actions/index.action';
 
 import './App.css';
+import {setItem} from "./store/actions/localstorage.actions";
+import {authSuccess} from "./store/actions/index.action";
 
 const theme = {
   primary: '#9013fe',
@@ -21,12 +23,15 @@ const theme = {
 const App = (props) => {
 
   useEffect(() => {
-    props.onTryAutoSignUp();
+    // props.onTryAutoSignUp();
   }, []);
 
   const tryToLogin = (email, password) => {
     if (email && password) {
-      props.onLogin();
+      // props.onLogin();
+      console.log('[tryToLogin]');
+      props.authSuccess();
+      props.setItem("isKey", props.auth);
     }
   };
 
@@ -70,15 +75,21 @@ const App = (props) => {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuth,
-    loading: state.auth.loading
+    loading: state.auth.loading,
+    auth: state.auth
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onTryAutoSignUp: () => dispatch(actions.authCheckState()),
-    onLogin: () => dispatch(actions.authLogin())
-  };
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onTryAutoSignUp: () => dispatch(actions.authCheckState()),
+//     onLogin: () => dispatch(actions.authLogin())
+//   };
+// };
+
+const mapDispatchToProps = {
+  setItem: setItem,
+  authSuccess: authSuccess
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

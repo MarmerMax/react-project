@@ -10,6 +10,7 @@ import authReducer from "./store/reducers/auth.reducer";
 import {BrowserRouter} from "react-router-dom";
 import thunk from 'redux-thunk';
 import log from "./middleware/log.middleware";
+import {localstorageMiddleware} from "./middleware/localstorage.middleware";
 
 const composeEnhancers = process.env.NODE_ENV === 'development'
   ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -21,7 +22,7 @@ const rootReducer = combineReducers({
 });
 
 const store = createStore( rootReducer, composeEnhancers(
-  applyMiddleware(thunk, log)
+  applyMiddleware(thunk, log, localstorageMiddleware)
 ) );
 
 ReactDOM.render(

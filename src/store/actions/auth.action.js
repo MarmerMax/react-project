@@ -22,7 +22,7 @@ export const authSuccess = () => {
 
 export const authCheckState = () => {
   return dispatch => {
-    const isAuth = localStorage.getItem('isAuth');
+    const isAuth = localStorage.getItem('isKey');
     if (!isAuth) {
       // dispatch(logout());
     } else {
