@@ -1,4 +1,4 @@
-import * as actions from '../../consts/action-types';
+import * as actions from '../../constants/action-types';
 
 export const openProject = (id) => {
   return {

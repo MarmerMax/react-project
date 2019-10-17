@@ -1,4 +1,4 @@
-import * as actions from '../../consts/action-types';
+import * as actions from '../../constants/action-types';
 
 const InitialState = {
   projects: [],

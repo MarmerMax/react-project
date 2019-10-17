@@ -4,8 +4,9 @@ import propTypes from 'prop-types';
 import {Redirect} from "react-router-dom";
 // import {validate} from "../../utils/validate.util";
 import withLoader from "../../hoc/with-loader/with-loader.hoc";
+import { connect } from 'react-redux';
 
-const Login = ({isAuth, tryToLogin, ...props}) => {
+const Login = (props) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,6 +23,7 @@ const Login = ({isAuth, tryToLogin, ...props}) => {
   };
 
   const handleSubmit = (event) => {
+    // console.log('submit')
     event.preventDefault();
 
     // const validationErrors = validate(email, password);
@@ -49,13 +51,12 @@ const Login = ({isAuth, tryToLogin, ...props}) => {
         });
       }
     } else {
-      tryToLogin(email, password);
+      props.tryToLogin(email, password);
     }
   };
 
-
   //TODO: return to normal code without setInterval...
-  if (isAuth) {
+  if (props.isAuthenticated) {
     return <Redirect to="/projects-page"/>;
     // const redirect = (path) => {
     //   props.history.push(path);
@@ -90,11 +91,17 @@ const Login = ({isAuth, tryToLogin, ...props}) => {
 };
 
 Login.propTypes = {
-  isAuth: propTypes.bool.isRequired,
   tryToLogin: propTypes.func.isRequired
 };
 
-export default withLoader(Login);
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuth,
+    loading: state.auth.loading
+  };
+};
+
+export default withLoader(connect(mapStateToProps)(Login));
 
 const Container = styled.div`
   margin: 20% auto;

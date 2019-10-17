@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import {Switch, Route, BrowserRouter as Router, Redirect} from "react-router-dom";
 import styled, {ThemeProvider} from 'styled-components';
 import {connect} from 'react-redux';
@@ -8,7 +8,8 @@ import ProjectsPage from './components/projects-page/projects-page.component';
 import Login from './components/login/login.component';
 import NotFoundPage from "./components/not-found-page/not-found-page.component";
 import {ProtectedRoute} from "./components/protected-route/protected-route.component";
-
+// import * as actions from './store/actions/auth.action';
+import * as actions from './store/actions/index.action';
 
 import './App.css';
 
@@ -19,13 +20,13 @@ const theme = {
 
 const App = (props) => {
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    props.onTryAutoSignUp();
+  }, []);
 
   const tryToLogin = (email, password) => {
     if (email && password) {
-      setIsAuthenticated(true);
-      setLoading(true);
+      props.onLogin();
     }
   };
 
@@ -41,8 +42,6 @@ const App = (props) => {
               path="/login"
               render={(props) => (
                 <Login
-                  loading={loading}
-                  isAuth={isAuthenticated}
                   tryToLogin={tryToLogin}
                   {...props}
                 />
@@ -50,13 +49,13 @@ const App = (props) => {
             />
             <ProtectedRoute
               exact
-              isAuth={isAuthenticated}
+              isAuth={props.isAuthenticated}
               path="/projects-page"
               Component={ProjectsPage}
             />
             <ProtectedRoute
               exact
-              isAuth={isAuthenticated}
+              isAuth={props.isAuthenticated}
               path="/project/:label"
               Component={TrackingTable}
             />
@@ -68,14 +67,22 @@ const App = (props) => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     projects: state.projects
-//   };
-// };
-//
-// export default connect(mapStateToProps)(App);
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuth,
+    loading: state.auth.loading
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoSignUp: () => dispatch(actions.authCheckState()),
+    onLogin: () => dispatch(actions.authLogin())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default App;
 
 const Container = styled.div`
   text-align: center;
