@@ -1,114 +1,64 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {withRouter} from "react-router-dom";
+import {connect} from 'react-redux';
 
 import ProjectsList from "../projects-list/projects-list.component";
 import Project from "../project/project.component";
 import AddNewProject from "../add-new-project/add-new-project.component";
 import EditProject from "../edit-project/edit-project.component";
 import Modal from '../../hoc/modal/modal.hoc';
+import {saveProject, deleteProject, updateProject, editProject, addProject, closeProject, openProject} from "../../store/actions/index.action";
 
 const ProjectsPage = (props) => {
-  const [projects, setProjects] = useState([
-    {label: '222', id: '23'}
-  ]);
-  const [showAddProject, setShowAddProject] = useState(false);
-  const [showEditProject, setShowEditProject] = useState(false);
-  const [editData, setEditData] = useState({
-    id: '',
-    label: ''
-  });
 
-  console.log(projects)
-
-  const handleAddProject = () => {
-    setShowAddProject(true);
-  };
-
-  const handleCloseBackdrop = () => {
-    setShowAddProject(false);
-    setShowEditProject(false);
-  };
-
-
-  const saveProject = (project) => {
-    const tempProjects = [...projects, project];
-    setProjects(tempProjects);
-    setShowAddProject(false);
-  };
-
-
-  const deleteProject = (id) => {
-    const tempProjects = projects.filter(project => project.id !== id);
-    setProjects(tempProjects);
-  };
-
-  const updateProject = (updatedProject) => {
-    const indexOfChangedProject = projects.findIndex(project => project.id === updatedProject.id);
-
-    let changedProjects = [...projects];
-    changedProjects[indexOfChangedProject].label = updatedProject.label;
-
-    setProjects(changedProjects);
-    setShowEditProject(false);
-    setEditData({
-      id: '',
-      label: ''
-    });
-  };
-
-  const handleEdit = (id, name) => {
-    setEditData({
-      ...editData,
-      id: id,
-      label: name
-    });
-    setShowEditProject(true);
-  };
-
-  const openProject = (label) => {
+  const openProject = (id, label) => {
+    props.openProject(id);
     props.history.push(`/project/${label}`);
   };
+
+  // console.log('[projects]: ', props.projects);
 
   return (
     <Container>
       <Title>Projects</Title>
       {
-        showAddProject
+        props.showAddProject
           ?
-          (<Modal show={showAddProject} modalClosed={handleCloseBackdrop}>
+          (<Modal show={props.showAddProject} modalClosed={props.closeProject}>
             <AddNewProject
-              createProject={saveProject}
-              projects={projects}
+              createProject={props.saveProject}
+              projects={props.projects}
             />
           </Modal>)
           : null
       }
       {
-        showEditProject
+        props.showEditProject
           ?
-          (<Modal show={showEditProject} modalClosed={handleCloseBackdrop}>
+          (<Modal show={props.showEditProject} modalClosed={props.closeProject}>
             <EditProject
-              newLabel={editData}
-              saveProject={updateProject}
-              projects={projects}
+              label={props.editLabel}
+              id={props.editId}
+              saveProject={props.updateProject}
+              projects={props.projects}
             />
           </Modal>)
           : null
       }
       <ProjectsContainer>
-        <AddProjectButton onClick={handleAddProject}>
+        <AddProjectButton onClick={props.addProject}>
           Add Project
         </AddProjectButton>
         <ProjectsList>
-          {projects.map(project => (
+          {props.projects.map(project => (
             <Project
               open={openProject}
               name={project.label}
               key={project.id}
               id={project.id}
-              remove={deleteProject}
-              edit={handleEdit}
+              remove={() => props.deleteProject(project.id)}
+              edit={props.editProject}
             />
           ))}
         </ProjectsList>
@@ -117,7 +67,27 @@ const ProjectsPage = (props) => {
   );
 };
 
-export default withRouter(ProjectsPage);
+const mapStateToProps = state => {
+  return {
+    projects: state.projects.projects,
+    showAddProject: state.projects.show.addProject,
+    showEditProject: state.projects.show.editProject,
+    editId: state.projects.edit.id,
+    editLabel: state.projects.edit.label
+  }
+};
+
+const mapDispatchToProps = {
+  openProject,
+  addProject,
+  saveProject,
+  deleteProject,
+  updateProject,
+  editProject,
+  closeProject
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectsPage));
 
 const Container = styled.div`
   display: flex;

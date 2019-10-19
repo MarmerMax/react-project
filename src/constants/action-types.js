@@ -3,6 +3,9 @@ export const EDIT_PROJECT = 'EDIT_PROJECT';
 export const SAVE_PROJECT = 'SAVE_PROJECT';
 export const OPEN_PROJECT = 'OPEN_PROJECT';
 export const DELETE_PROJECT = 'DELETE_PROJECT';
+export const UPDATE_PROJECT = 'UPDATE_PROJECT';
+export const CLOSE_PROJECT = 'CLOSE_PROJECT';
+export const SET_PROJECT_HOURS = 'SET_PROJECT_HOURS';
 
 export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';

@@ -8,8 +8,6 @@ import ProjectsPage from './components/projects-page/projects-page.component';
 import Login from './components/login/login.component';
 import NotFoundPage from "./components/not-found-page/not-found-page.component";
 import {ProtectedRoute} from "./components/protected-route/protected-route.component";
-// import * as actions from './store/actions/auth.action';
-import * as actions from './store/actions/index.action';
 
 import './App.css';
 import {setItem} from "./store/actions/localstorage.actions";
@@ -29,7 +27,7 @@ const App = (props) => {
   const tryToLogin = (email, password) => {
     if (email && password) {
       // props.onLogin();
-      console.log('[tryToLogin]');
+      // console.log('[tryToLogin]');
       props.authSuccess();
       props.setItem("isKey", props.auth);
     }
@@ -80,20 +78,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onTryAutoSignUp: () => dispatch(actions.authCheckState()),
-//     onLogin: () => dispatch(actions.authLogin())
-//   };
-// };
-
 const mapDispatchToProps = {
-  setItem: setItem,
-  authSuccess: authSuccess
+  setItem,
+  authSuccess
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-// export default App;
 
 const Container = styled.div`
   text-align: center;

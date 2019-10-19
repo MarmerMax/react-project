@@ -15,6 +15,7 @@ export const authLogin = () => {
 };
 
 export const authSuccess = () => {
+  // console.log('[action]');
   return {
     type: actions.AUTH_SUCCESS
   }

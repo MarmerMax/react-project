@@ -3,20 +3,21 @@ import styled from 'styled-components';
 import propTypes from 'prop-types';
 import DateSlot from '../date-slot/date-slot.component';
 import {createWeek} from "../../utils/create-date.util";
+import {connect} from "react-redux";
+import {getProject, getProjectHours} from "../../selectors/projects.selector";
+import {setProjectHours} from "../../store/actions/projects.action";
 
-const DatesSlots = ({firstDate, label}) => {
+
+const DatesSlots = ({firstDate, label, ...props}) => {
   const [dateLabels, setDateLabels] = useState(createWeek(firstDate));
-  const [hours, setHours] = useState({});
 
   useEffect(() => {
     setDateLabels(createWeek(firstDate));
   }, [firstDate]);
 
-  const changeHours = (day, hour) => {
-    const tempHours = {...hours};
-    tempHours[day] = hour;
-    setHours(tempHours);
-  };
+  // console.log(dateLabels);
+  // console.log('[props.hours]', props.hours)
+  // console.log('[props.project]', props.project)
 
   return (
     <Container>
@@ -26,8 +27,8 @@ const DatesSlots = ({firstDate, label}) => {
       {dateLabels.map(date =>
         <DateSlot
           date={date.label}
-          hour={hours[date.label]}
-          changeHours={changeHours}
+          hour={props.hours[date.label]}
+          changeHours={props.setProjectHours}
           key={date.label}
         />)}
     </Container>
@@ -39,7 +40,18 @@ DatesSlots.propTypes = {
   label: propTypes.string.isRequired
 };
 
-export default DatesSlots;
+const mapStateToProps = state => {
+  return {
+    project: getProject(state),
+    hours: getProjectHours(state)
+  }
+};
+
+const mapDispatchTOProps = {
+  setProjectHours
+};
+
+export default connect(mapStateToProps, mapDispatchTOProps)(DatesSlots);
 
 const Container = styled.div`
   background: #F7F7F7;

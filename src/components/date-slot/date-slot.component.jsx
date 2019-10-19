@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import propTypes from 'prop-types';
 
 const DateSlot = ({date, hour, changeHours}) => {
+
   const handleInput = (event) => {
     const value = event.target.value;
     changeHours(date, value);
@@ -32,7 +33,7 @@ DateSlot.propTypes = {
 //   prevProps.changeHours === nextProps.changeHours
 // );
 
-export  default DateSlot;
+export default DateSlot;
 
 const Container = styled.div`
   height: 400px;

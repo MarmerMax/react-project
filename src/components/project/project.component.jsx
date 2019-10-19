@@ -3,25 +3,17 @@ import styled from 'styled-components';
 import propTypes from 'prop-types';
 
 const Project = ({open, name, id, remove, edit}) => {
-  const handleDelete = () => {
-    remove(id);
-  };
-
-  const handleEdit = () => {
-    edit(id, name);
-  };
-
-  const handleClick = () => {
-    open(name);
-  };
+  // const handleClick = () => {
+  //   open(id, name);
+  // };
 
   return (
     <Container>
-      <ProjectTitle onClick={handleClick}>{name}</ProjectTitle>
+      <ProjectTitle onClick={() => open(id, name)}>{name}</ProjectTitle>
       <ProjectProperties>
-        <ProjectEdit onClick={handleEdit}>Edit</ProjectEdit>
+        <ProjectEdit onClick={() => edit(id, name)}>Edit</ProjectEdit>
         <Space>&nbsp; | &nbsp;</Space>
-        <ProjectDelete onClick={handleDelete}>Delete</ProjectDelete>
+        <ProjectDelete onClick={remove}>Delete</ProjectDelete>
       </ProjectProperties>
     </Container>
   );

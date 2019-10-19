@@ -2,21 +2,21 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import propTypes from 'prop-types';
 
-const EditProject = ({newLabel, saveProject, projects}) => {
+const EditProject = ({label, id, saveProject, projects}) => {
   const [error, setError] = useState({});
   const [updatedProject, setUpdatedProjects] = useState({
-    id: newLabel.id,
-    label: newLabel.label
+    label: label,
+    id: id
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if(!updatedProject.label){
       setError({label: "Enter the label of project"});
-    } else if(projects.some(project => project.label === updatedProject.label && project.id !== updatedProject.id)) {
+    } else if(projects.some(project => (project.label === updatedProject.label && project.id !== updatedProject.id))) {
       setError({label: "The name is already exists"})
     } else {
-      saveProject(updatedProject);
+      saveProject(updatedProject.label);
     }
   };
 
@@ -41,7 +41,8 @@ const EditProject = ({newLabel, saveProject, projects}) => {
 };
 
 EditProject.propTypes = {
-  newLabel: propTypes.objectOf(propTypes.string).isRequired,
+  label: propTypes.string.isRequired,
+  id: propTypes.string.isRequired,
   saveProject: propTypes.func.isRequired,
   projects: propTypes.arrayOf(propTypes.object).isRequired
 };

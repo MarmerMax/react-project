@@ -8,7 +8,8 @@ const AddNewProject = ({projects, createProject}) => {
 
   const [project, setProject] = useState({
     label: '',
-    id: v4()
+    id: v4(),
+    hours: {}
   });
   const [error, setError] = useState({});
 
@@ -28,12 +29,8 @@ const AddNewProject = ({projects, createProject}) => {
       setError({label: "The label is already exists"})
     } else {
       createProject(project);
-      // setProject({});
-      // setError({});
     }
   };
-
-  console.log('[project]', project)
 
   return (
     <Container>
