@@ -1,7 +1,3 @@
-export const ADD_PROJECT = 'ADD_PROJECT';
-export const EDIT_PROJECT = 'EDIT_PROJECT';
-export const CLOSE_PROJECT = 'CLOSE_PROJECT';
-
 export const OPEN_ADD_WINDOW = 'OPEN_ADD_WINDOW';
 export const OPEN_EDIT_WINDOW = 'OPEN_EDIT_WINDOW';
 export const CLOSE_WINDOW = 'CLOSE_WINDOW';
