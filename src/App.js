@@ -10,7 +10,6 @@ import NotFoundPage from "./components/not-found-page/not-found-page.component";
 import {ProtectedRoute} from "./components/protected-route/protected-route.component";
 
 import './App.css';
-import {setItem} from "./store/actions/localstorage.actions";
 import {authSuccess} from "./store/actions/index.action";
 
 const theme = {
@@ -29,7 +28,7 @@ const App = (props) => {
       // props.onLogin();
       // console.log('[tryToLogin]');
       props.authSuccess();
-      props.setItem("isKey", props.auth);
+      // props.setItem("isKey", props.auth);
     }
   };
 
@@ -73,13 +72,12 @@ const App = (props) => {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuth,
-    loading: state.auth.loading,
-    auth: state.auth
+    loading: state.auth.loading
+    // auth: state.auth
   };
 };
 
 const mapDispatchToProps = {
-  setItem,
   authSuccess
 };
 

@@ -1,34 +1,19 @@
 import {setItem} from "../utils/localstorage.utils";
-import {SET_ITEM} from "../constants/action-types";
+import {AUTH_SUCCESS, SAVE_PROJECT, UPDATE_PROJECT, DELETE_PROJECT, OPEN_PROJECT, SET_PROJECT_HOURS} from "../constants/action-types";
 
-export const localstorageMiddleware = () => (next) => (action) => {
+const projectsType = [SAVE_PROJECT, UPDATE_PROJECT, DELETE_PROJECT, SET_PROJECT_HOURS, OPEN_PROJECT];
 
-  if(!action.meta || !action.meta.localstorage){
-    next(action);
-    return;
-  }
-
-  switch (action.type) {
-    case SET_ITEM:
-      const key = action.payload.key;
-      const value = action.payload.value;
-      setItem(key, value);
-      break;
-    default:
-      break;
-  }
+export const localstorageMiddleware = ({getState}) => (next) => (action) => {
   next(action);
-};
 
+  const {type} = action;
 
+  const store = getState();
 
-
-
-
-export const thunkMiddleware = (dispatch) => (next) => (action) => {
-  next(action);
-  if (typeof action === 'function') {
-    action(dispatch);
+  if (type === AUTH_SUCCESS) {
+    setItem("auth", store.auth);
+    setItem("projects", store.projects);
+  } else if (projectsType.includes(type)) {
+    setItem("projects", store.projects);
   }
-
 };

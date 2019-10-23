@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import {withRouter} from "react-router-dom";
 import {connect} from 'react-redux';
@@ -8,46 +8,59 @@ import Project from "../project/project.component";
 import AddNewProject from "../add-new-project/add-new-project.component";
 import EditProject from "../edit-project/edit-project.component";
 import Modal from '../../hoc/modal/modal.hoc';
-import {saveProject, deleteProject, updateProject, editProject, addProject, closeProject, openProject} from "../../store/actions/index.action";
+import {saveProject, deleteProject, updateProject, openProject} from "../../store/actions/index.action";
+import {openAddWindow, openEditWindow, closeWindow} from '../../store/actions/index.action';
 
 const ProjectsPage = (props) => {
+
+  useEffect(() => {
+    props.openProject('');
+  }, []);
 
   const openProject = (id, label) => {
     props.openProject(id);
     props.history.push(`/project/${label}`);
   };
 
-  // console.log('[projects]: ', props.projects);
+  const saveProject = (project) => {
+    props.saveProject(project);
+    props.closeWindow();
+  };
+
+  const updateProject = (id, label) => {
+    props.updateProject(id, label);
+    props.closeWindow();
+  };
 
   return (
     <Container>
       <Title>Projects</Title>
       {
-        props.showAddProject
+        props.showAddWindow
           ?
-          (<Modal show={props.showAddProject} modalClosed={props.closeProject}>
+          (<Modal show={props.showAddWindow} modalClosed={props.closeWindow}>
             <AddNewProject
-              createProject={props.saveProject}
+              saveProject={saveProject}
               projects={props.projects}
             />
           </Modal>)
           : null
       }
       {
-        props.showEditProject
+        props.showEditWindow
           ?
-          (<Modal show={props.showEditProject} modalClosed={props.closeProject}>
+          (<Modal show={props.showEditWindow} modalClosed={props.closeWindow}>
             <EditProject
-              label={props.editLabel}
-              id={props.editId}
-              saveProject={props.updateProject}
+              label={props.editProjectLabel}
+              id={props.editProjectId}
+              saveProject={updateProject}
               projects={props.projects}
             />
           </Modal>)
           : null
       }
       <ProjectsContainer>
-        <AddProjectButton onClick={props.addProject}>
+        <AddProjectButton onClick={props.openAddWindow}>
           Add Project
         </AddProjectButton>
         <ProjectsList>
@@ -58,7 +71,7 @@ const ProjectsPage = (props) => {
               key={project.id}
               id={project.id}
               remove={() => props.deleteProject(project.id)}
-              edit={props.editProject}
+              edit={props.openEditWindow}
             />
           ))}
         </ProjectsList>
@@ -70,21 +83,21 @@ const ProjectsPage = (props) => {
 const mapStateToProps = state => {
   return {
     projects: state.projects.projects,
-    showAddProject: state.projects.show.addProject,
-    showEditProject: state.projects.show.editProject,
-    editId: state.projects.edit.id,
-    editLabel: state.projects.edit.label
+    showAddWindow: state.ui.show.addWindow,
+    showEditWindow: state.ui.show.editWindow,
+    editProjectId: state.ui.edit.id,
+    editProjectLabel: state.ui.edit.label
   }
 };
 
 const mapDispatchToProps = {
   openProject,
-  addProject,
   saveProject,
   deleteProject,
   updateProject,
-  editProject,
-  closeProject
+  openAddWindow,
+  openEditWindow,
+  closeWindow
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectsPage));

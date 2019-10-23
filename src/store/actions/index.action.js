@@ -8,8 +8,11 @@ export {
   saveProject,
   deleteProject,
   updateProject,
-  editProject,
-  closeProject,
-  openProject,
-  addProject
+  openProject
 } from './projects.action';
+
+export {
+  openEditWindow,
+  openAddWindow,
+  closeWindow
+} from './ui.action'

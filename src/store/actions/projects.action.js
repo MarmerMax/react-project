@@ -9,34 +9,12 @@ export const openProject = (id) => {
   }
 };
 
-export const closeProject = () => {
-  return {
-    type: actions.CLOSE_PROJECT
-  }
-};
-
 export const setProjectHours = (date, hours) => {
   return {
     type: actions.SET_PROJECT_HOURS,
     payload: {
       date,
       hours
-    }
-  }
-};
-
-export const addProject = () => {
-  return {
-    type: actions.ADD_PROJECT
-  }
-};
-
-export const editProject = (id, label) => {
-  return {
-    type: actions.EDIT_PROJECT,
-    payload: {
-      id: id,
-      label: label
     }
   }
 };
@@ -50,10 +28,11 @@ export const saveProject = (project) => {
   }
 };
 
-export const updateProject = (label) => {
+export const updateProject = (id, label) => {
   return {
     type: actions.UPDATE_PROJECT,
     payload: {
+      id: id,
       label: label
     }
   }

@@ -15,10 +15,6 @@ const DatesSlots = ({firstDate, label, ...props}) => {
     setDateLabels(createWeek(firstDate));
   }, [firstDate]);
 
-  // console.log(dateLabels);
-  // console.log('[props.hours]', props.hours)
-  // console.log('[props.project]', props.project)
-
   return (
     <Container>
       <ProjectLabel>

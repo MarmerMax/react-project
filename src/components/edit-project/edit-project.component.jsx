@@ -16,7 +16,7 @@ const EditProject = ({label, id, saveProject, projects}) => {
     } else if(projects.some(project => (project.label === updatedProject.label && project.id !== updatedProject.id))) {
       setError({label: "The name is already exists"})
     } else {
-      saveProject(updatedProject.label);
+      saveProject(updatedProject.id, updatedProject.label);
     }
   };
 
@@ -32,7 +32,7 @@ const EditProject = ({label, id, saveProject, projects}) => {
     <Container>
       {<ProjectForm onSubmit={handleSubmit}>
         <ProjectLabel>Project label</ProjectLabel>
-        {error.label ? <IncorrectInput>*{error.label}</IncorrectInput> : null}
+        {error.label && <IncorrectInput>*{error.label}</IncorrectInput>}
         <ProjectInput autoFocus onChange={handleInput} value={updatedProject.label}/>
         <SaveButton type="submit">Save</SaveButton>
       </ProjectForm>}

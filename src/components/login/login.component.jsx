@@ -23,7 +23,6 @@ const Login = (props) => {
   };
 
   const handleSubmit = (event) => {
-    // console.log('submit')
     event.preventDefault();
 
     // const validationErrors = validate(email, password);

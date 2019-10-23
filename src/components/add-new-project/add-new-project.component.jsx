@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 import withLoader from "../../hoc/with-loader/with-loader.hoc";
 import v4 from "uuid/v4";
 
-const AddNewProject = ({projects, createProject}) => {
+const AddNewProject = ({projects, saveProject}) => {
 
   const [project, setProject] = useState({
     label: '',
@@ -28,7 +28,7 @@ const AddNewProject = ({projects, createProject}) => {
     } else if (projects.some(item => item.label === project.label)) {
       setError({label: "The label is already exists"})
     } else {
-      createProject(project);
+      saveProject(project);
     }
   };
 
@@ -37,7 +37,7 @@ const AddNewProject = ({projects, createProject}) => {
       <Title>Add new project</Title>
       <ProjectForm onSubmit={handleSubmit}>
         <ProjectLabel>Project label</ProjectLabel>
-        {error.label ? <IncorrectInput>*{error.label}</IncorrectInput> : null}
+        {error.label && <IncorrectInput>*{error.label}</IncorrectInput>}
         <ProjectInput autoFocus onChange={handleInput}/>
         <SaveButton type="submit">Save</SaveButton>
       </ProjectForm>
@@ -47,7 +47,7 @@ const AddNewProject = ({projects, createProject}) => {
 
 AddNewProject.propTypes = {
   projects: propTypes.arrayOf(propTypes.object).isRequired,
-  createProject: propTypes.func.isRequired
+  saveProject: propTypes.func.isRequired
 };
 
 export default withLoader(AddNewProject);

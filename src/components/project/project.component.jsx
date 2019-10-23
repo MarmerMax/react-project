@@ -3,10 +3,6 @@ import styled from 'styled-components';
 import propTypes from 'prop-types';
 
 const Project = ({open, name, id, remove, edit}) => {
-  // const handleClick = () => {
-  //   open(id, name);
-  // };
-
   return (
     <Container>
       <ProjectTitle onClick={() => open(id, name)}>{name}</ProjectTitle>
