@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import propTypes from 'prop-types';
 import {Redirect} from "react-router-dom";
-// import {validate} from "../../utils/validate.util";
+import {validate} from "../../utils/validate.util";
 import withLoader from "../../hoc/with-loader/with-loader.hoc";
 import { connect } from 'react-redux';
+import { auth } from '../../store/actions/index.action';
+
 
 const Login = (props) => {
 
@@ -23,38 +25,46 @@ const Login = (props) => {
   };
 
   const handleSubmit = (event) => {
+    setErrors({});
     event.preventDefault();
-
-    // const validationErrors = validate(email, password);
-    // if(validationErrors.length > 0){
-    //   setErrors(validationErrors);
-    // } else {
-    //   props.tryToLogin(email, password);
-    // }
-    if (!email || !password) {
-      if (!email && !password) {
-        setErrors({
-          ...errors,
-          email: "Email is incorrect",
-          password: "Password is incorrect"
-        });
-      } else if (!email) {
-        setErrors({
-          ...errors,
-          email: "Email is incorrect"
-        });
-      } else {
-        setErrors({
-          ...errors,
-          password: "Password is incorrect"
-        });
-      }
+    const validationErrors = validate(email, password);
+    console.log("ERRORS", validationErrors)
+    if(Object.keys(validationErrors).length > 0){
+      setErrors(validationErrors);
     } else {
+      props.auth(email, password);
       props.tryToLogin(email, password);
     }
+    // if (!email || !password) {
+    //   if (!email && !password) {
+    //     setErrors({
+    //       ...errors,
+    //       email: "Email is incorrect",
+    //       password: "Password is incorrect"
+    //     });
+    //   } else if (!email) {
+    //     setErrors({
+    //       ...errors,
+    //       email: "Email is incorrect"
+    //     });
+    //   } else if (password && (password.length < 6)) {
+    //     setErrors({
+    //       ...errors,
+    //       password: "Password have to be at least 6 characters"
+    //     });
+    //   } else {
+    //     setErrors({
+    //       ...errors,
+    //       password: "Password is incorrect"
+    //     });
+    //   }
+    // } else {
+    //   props.auth(email, password);
+    //   props.tryToLogin(email, password);
+    // }
   };
 
-  //TODO: return to normal code without setInterval...
+  // TODO: return to normal code without setInterval...
   if (props.isAuthenticated) {
     return <Redirect to="/projects-page"/>;
     // const redirect = (path) => {
@@ -100,7 +110,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default withLoader(connect(mapStateToProps)(Login));
+const mapDispatchToProps = {
+  auth
+};
+
+export default withLoader(connect(mapStateToProps, mapDispatchToProps)(Login));
 
 const Container = styled.div`
   margin: 20% auto;

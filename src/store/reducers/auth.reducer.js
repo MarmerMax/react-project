@@ -29,16 +29,16 @@ const authSuccess = (state) => {
 };
 
 const authReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case actions.AUTH_START:
-      return authStart(state);
-    case actions.AUTH_SUCCESS:
-      return authSuccess(state);
-    // case actions.AUTH_LOGIN:
-    //   return authLogin(state);
-    default:
+  // switch (action.type) {
+  //   case actions.AUTH_START:
+  //     return authStart(state);
+  //   case actions.AUTH_SUCCESS:
+  //     return authSuccess(state);
+  //   // case actions.AUTH_LOGIN:
+  //   //   return authLogin(state);
+  //   default:
       return state;
-  }
+  // }
 };
 
 export default authReducer;

@@ -1,7 +1,10 @@
 export {
-  authCheckState,
   authSuccess,
-  authLogin
+  // authCheckState,
+  // authLogin
+  authStart,
+  authFail,
+  auth
 } from './auth.action';
 
 export {

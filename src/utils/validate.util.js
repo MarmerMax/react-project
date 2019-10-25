@@ -4,8 +4,10 @@ export const validate = (email, password) => {
   //Email Errors
   if(!email){
     errors.email = "Email required"
-  } else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)){
+    console.log("1")
+  } else if(!validateEmail(email)){
     errors.email = "Invalid email address"
+    console.log("2")
   }
 
   //Password Errors
@@ -16,4 +18,9 @@ export const validate = (email, password) => {
   }
 
   return errors;
+};
+
+function validateEmail(email) {
+  const re = /^(([^<>()\\.,;:\s@"]+(\.[^<>()\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
 };
