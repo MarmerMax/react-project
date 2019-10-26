@@ -4,8 +4,8 @@ import propTypes from 'prop-types';
 import {Redirect} from "react-router-dom";
 import {validate} from "../../utils/validate.util";
 import withLoader from "../../hoc/with-loader/with-loader.hoc";
-import { connect } from 'react-redux';
-import { auth } from '../../store/actions/index.action';
+import {connect} from 'react-redux';
+import {auth} from '../../store/actions/index.action';
 
 
 const Login = (props) => {
@@ -13,6 +13,7 @@ const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
+  const [isSignin, setIsSignin] = useState(true);
 
   const handleEmail = (event) => {
     const currentEmail = event.target.value;
@@ -24,15 +25,19 @@ const Login = (props) => {
     setPassword((prevPass) => currentPassword);
   };
 
+  const handleSwitch = () => {
+    setIsSignin(!isSignin);
+  };
+
   const handleSubmit = (event) => {
     setErrors({});
     event.preventDefault();
     const validationErrors = validate(email, password);
-    console.log("ERRORS", validationErrors)
-    if(Object.keys(validationErrors).length > 0){
+    // console.log("ERRORS", validationErrors)
+    if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      props.auth(email, password);
+      props.auth(email, password, isSignin);
       props.tryToLogin(email, password);
     }
     // if (!email || !password) {
@@ -67,10 +72,6 @@ const Login = (props) => {
   // TODO: return to normal code without setInterval...
   if (props.isAuthenticated) {
     return <Redirect to="/projects-page"/>;
-    // const redirect = (path) => {
-    //   props.history.push(path);
-    // };
-    // setInterval(redirect, 1000);
   }
 
   return (
@@ -93,7 +94,12 @@ const Login = (props) => {
             onChange={handlePassword}
           />
         </InputContainer>
-        <LoginButton type="submit">Login</LoginButton>
+        <LoginButton type="submit">
+          {isSignin ? "signin" : "signup"}
+        </LoginButton>
+        <SwitchButton onClick={handleSwitch}>
+          Switch to {isSignin ? "signup" : "signin"}
+        </SwitchButton>
       </LoginForm>
     </Container>
   );
@@ -173,8 +179,22 @@ const LoginButton = styled.button`
   margin-top: 15px;
   color: white;
   font-weight: bold;
-  //background-color: ${(props) => props.theme.primary};
-  background-color: #b15cfc;
+  background-color: ${(props) => props.theme.primary};
+  //background-color: #b15cfc;
+  &:hover {
+    opacity: 0.5;
+  }
+`;
+
+const SwitchButton = styled.div`
+  width: 100%;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 15px;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  font-size: 13px;
   &:hover {
     opacity: 0.5;
   }

@@ -27,7 +27,7 @@ const App = (props) => {
     if (email && password) {
       // props.onLogin();
       // console.log('[tryToLogin]');
-      props.authSuccess();
+      // props.authSuccess();
       // props.setItem("isKey", props.auth);
     }
   };
