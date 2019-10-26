@@ -1,5 +1,7 @@
 import * as actions from '../../constants/action-types';
 
+
+
 export const openProject = (id) => {
   return {
     type: actions.OPEN_PROJECT,

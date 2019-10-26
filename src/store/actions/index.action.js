@@ -2,6 +2,7 @@ export {
   authSuccess,
   // authCheckState,
   // authLogin
+  authLogout,
   authStart,
   authFail,
   auth

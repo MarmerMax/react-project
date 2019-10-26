@@ -1,5 +1,6 @@
 import {setItem} from "../utils/localstorage.utils";
-import {AUTH_SUCCESS, SAVE_PROJECT, UPDATE_PROJECT, DELETE_PROJECT, OPEN_PROJECT, SET_PROJECT_HOURS} from "../constants/action-types";
+import {AUTH_SUCCESS, AUTH_LOGOUT, SAVE_PROJECT, UPDATE_PROJECT, DELETE_PROJECT, OPEN_PROJECT, SET_PROJECT_HOURS}
+from "../constants/action-types";
 
 const projectsType = [SAVE_PROJECT, UPDATE_PROJECT, DELETE_PROJECT, SET_PROJECT_HOURS, OPEN_PROJECT];
 
@@ -15,5 +16,8 @@ export const localstorageMiddleware = ({getState}) => (next) => (action) => {
     setItem("projects", store.projects);
   } else if (projectsType.includes(type)) {
     setItem("projects", store.projects);
+  } else if (type === AUTH_LOGOUT) {
+    setItem("auth", store.auth);
+    localStorage.removeItem("projects");
   }
 };

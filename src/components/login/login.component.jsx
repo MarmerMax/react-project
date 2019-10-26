@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import {connect} from 'react-redux';
 import propTypes from 'prop-types';
 import {Redirect} from "react-router-dom";
+
 import {validate} from "../../utils/validate.util";
 import withLoader from "../../hoc/with-loader/with-loader.hoc";
-import {connect} from 'react-redux';
 import {auth} from '../../store/actions/index.action';
 
-
 const Login = (props) => {
+
+  // console.log("loading", props.loading)
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -33,43 +35,13 @@ const Login = (props) => {
     setErrors({});
     event.preventDefault();
     const validationErrors = validate(email, password);
-    // console.log("ERRORS", validationErrors)
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
       props.auth(email, password, isSignin);
-      props.tryToLogin(email, password);
     }
-    // if (!email || !password) {
-    //   if (!email && !password) {
-    //     setErrors({
-    //       ...errors,
-    //       email: "Email is incorrect",
-    //       password: "Password is incorrect"
-    //     });
-    //   } else if (!email) {
-    //     setErrors({
-    //       ...errors,
-    //       email: "Email is incorrect"
-    //     });
-    //   } else if (password && (password.length < 6)) {
-    //     setErrors({
-    //       ...errors,
-    //       password: "Password have to be at least 6 characters"
-    //     });
-    //   } else {
-    //     setErrors({
-    //       ...errors,
-    //       password: "Password is incorrect"
-    //     });
-    //   }
-    // } else {
-    //   props.auth(email, password);
-    //   props.tryToLogin(email, password);
-    // }
   };
 
-  // TODO: return to normal code without setInterval...
   if (props.isAuthenticated) {
     return <Redirect to="/projects-page"/>;
   }
@@ -77,10 +49,11 @@ const Login = (props) => {
   return (
     <Container>
       <Title>Login</Title>
+      <ErrorMessage>{props.error && props.error.message}</ErrorMessage>
       <LoginForm onSubmit={handleSubmit}>
         <InputContainer>
           <InputTitle>
-            Email {errors.email ? <IncorrectInput>*{errors.email}</IncorrectInput> : null}
+            Email {errors.email && <IncorrectInput>*{errors.email}</IncorrectInput>}
           </InputTitle>
           <InputField
             onChange={handleEmail}
@@ -88,9 +61,9 @@ const Login = (props) => {
         </InputContainer>
         <InputContainer>
           <InputTitle>
-            Password {errors.password ? <IncorrectInput>*{errors.password}</IncorrectInput> : null}
+            Password {errors.password && <IncorrectInput>*{errors.password}</IncorrectInput>}
           </InputTitle>
-          <InputField
+          <InputField type="password"
             onChange={handlePassword}
           />
         </InputContainer>
@@ -106,13 +79,13 @@ const Login = (props) => {
 };
 
 Login.propTypes = {
-  tryToLogin: propTypes.func.isRequired
+  loading: propTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuth,
-    loading: state.auth.loading
+    error: state.auth.error
   };
 };
 
@@ -125,13 +98,18 @@ export default withLoader(connect(mapStateToProps, mapDispatchToProps)(Login));
 const Container = styled.div`
   margin: 20% auto;
   width: 260px;
-  height: 300px;
+  //height: 300px;
   background: #F7F7F7;
   border: 1px solid #e1e1e1;
   border-radius: 5px;
-  padding: 30px 30px 40px;
+  padding: 30px 30px 30px;
   text-align: left;
   box-sizing: border-box;
+`;
+
+const ErrorMessage = styled.p`
+  text-align: center;
+  color: red;
 `;
 
 const Title = styled.div`

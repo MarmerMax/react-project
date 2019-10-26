@@ -8,6 +8,7 @@ import Project from "../project/project.component";
 import AddNewProject from "../add-new-project/add-new-project.component";
 import EditProject from "../edit-project/edit-project.component";
 import Modal from '../../hoc/modal/modal.hoc';
+import {authLogout} from "../../store/actions/index.action";
 import {saveProject, deleteProject, updateProject, openProject} from "../../store/actions/index.action";
 import {openAddWindow, openEditWindow, closeWindow} from '../../store/actions/index.action';
 
@@ -34,7 +35,10 @@ const ProjectsPage = (props) => {
 
   return (
     <Container>
-      <Title>Projects</Title>
+      <TitleContainer>
+        <Title>Projects</Title>
+        <LogoutButton onClick={props.authLogout}>Logout</LogoutButton>
+      </TitleContainer>
       {
         props.showAddWindow
           ?
@@ -97,7 +101,8 @@ const mapDispatchToProps = {
   updateProject,
   openAddWindow,
   openEditWindow,
-  closeWindow
+  closeWindow,
+  authLogout
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectsPage));
@@ -109,6 +114,13 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
+const TitleContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const Title = styled.div`
   font-size: 22px;
   color: ${(props) => props.theme.primary};
@@ -116,6 +128,20 @@ const Title = styled.div`
   text-align: left;
   padding: 20px 0;
   align-self: flex-start;
+`;
+
+const LogoutButton = styled.div`
+  color: darkred;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: left;
+  padding: 20px 0;
+  align-self: flex-start;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const ProjectsContainer = styled.div`

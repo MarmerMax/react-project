@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Switch, Route, BrowserRouter as Router, Redirect} from "react-router-dom";
 import styled, {ThemeProvider} from 'styled-components';
 import {connect} from 'react-redux';
@@ -10,7 +10,6 @@ import NotFoundPage from "./components/not-found-page/not-found-page.component";
 import {ProtectedRoute} from "./components/protected-route/protected-route.component";
 
 import './App.css';
-import {authSuccess} from "./store/actions/index.action";
 
 const theme = {
   primary: '#9013fe',
@@ -19,18 +18,7 @@ const theme = {
 
 const App = (props) => {
 
-  useEffect(() => {
-    // props.onTryAutoSignUp();
-  }, []);
-
-  const tryToLogin = (email, password) => {
-    if (email && password) {
-      // props.onLogin();
-      // console.log('[tryToLogin]');
-      // props.authSuccess();
-      // props.setItem("isKey", props.auth);
-    }
-  };
+  const loading = props.loading;
 
   return (
     <ThemeProvider theme={theme}>
@@ -38,13 +26,12 @@ const App = (props) => {
         <Container>
           <Switch>
             <Route exact path="/" render={() => <Redirect to="/login/"/>}/>
-            {/*<Route path="/login" component={Login} tryToLogin={tryToLogin}/>*/}
             <Route
               exact
               path="/login"
               render={(props) => (
                 <Login
-                  tryToLogin={tryToLogin}
+                  loading={loading}
                   {...props}
                 />
               )}
@@ -73,15 +60,10 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuth,
     loading: state.auth.loading
-    // auth: state.auth
   };
 };
 
-const mapDispatchToProps = {
-  authSuccess
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
 
 const Container = styled.div`
   text-align: center;

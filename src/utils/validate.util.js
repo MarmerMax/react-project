@@ -4,10 +4,8 @@ export const validate = (email, password) => {
   //Email Errors
   if(!email){
     errors.email = "Email required"
-    console.log("1")
   } else if(!validateEmail(email)){
     errors.email = "Invalid email address"
-    console.log("2")
   }
 
   //Password Errors

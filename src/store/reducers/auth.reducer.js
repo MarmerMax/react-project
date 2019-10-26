@@ -8,13 +8,14 @@ const initialState = {
   loading: false
 };
 
-// const authLogin = (state) => {
-//   return {
-//     ...state,
-//     isAuth: true,
-//     loading: false
-//   }
-// };
+const authLogout = (state) => {
+  return {
+    ...state,
+    token: null,
+    userId: null,
+    isAuth: false
+  }
+};
 
 const authStart = (state) => {
   return {
@@ -51,8 +52,8 @@ const authReducer = (state = initialState, action) => {
       return authSuccess(state, action.payload);
     case actionTypes.AUTH_FAIL:
       return authFail(state, action.payload);
-    // case actionTypes.AUTH_LOGIN:
-    //   return authLogin(state);
+    case actionTypes.AUTH_LOGOUT:
+      return authLogout(state);
     default:
       return state;
   }
